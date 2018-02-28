@@ -1,0 +1,81 @@
+{# surcharge de la vue base.html.twig #}
+{% extends "base.html.twig" %}
+
+{# Un commentaire en twig #}
+
+{# Déclaration d'une variable #}
+{% set bonjour = 'hello' %}
+
+{# Remplace le bloc body de base.html.twig #}
+{% block body %}
+    {# pour afficher le contenu d'une variable #}
+    <p>{{ bonjour }}</p>
+    
+    {# Pour tester une variable #}
+    {{ dump(bonjour) }}
+    
+    {% if bonjour == 'hello' %}
+        <p>La variable bonjour vaut 'hello'</p>
+    {% endif %}    
+    
+    {% set int = 3 %}
+    
+    {% if int > 2 %}
+        <p>int est superieur à 2</p>
+    {% elseif int < 1 %}    
+        <p>int est inferieur à 1</p>
+    {% endif %}
+           
+    {# equivalent d isset() en PHP #}
+    {% if int is defined %}
+        <p>int existe</p>
+    {% endif %}    
+    
+    {# equivalent d is_null() en PHP #}
+    {% if int is null %}
+        <p>int vaut null</p>
+    {% endif %}
+    
+    {# equivalent d empty() en PHP #}
+    {% if int is empty %}
+        <p>int est vide</p>
+    {% endif %}
+        
+    {# and = && #}
+    {% if int > 2 and bonjour == 'hello' %}
+        <p>Les 2 conditions sont remplies</p>
+    {% endif %}
+    
+    {# or = || #}
+    {% if int > 2 or bonjour == 'hello' %}
+        <p>Une des 2 conditions sont remplies</p>
+    {% endif %}
+    
+    {# equivalent d !empty() en PHP #}
+    {% if int is not empty %}
+        <p>int n'est pas vide</p>
+    {% endif %}
+    
+    {# déclaration d'un tableau #}
+    {% set pronoms = ['je','tu','il'] %}
+    
+    {# foreach ( $pronoms as $pronom) #}
+    {% for pronom in pronoms %}
+        {{ pronom }}<br>
+    {% endfor %}    
+    
+    {# foreach ( $pronoms as $indice => $pronom) #}
+    {% for indice, pronom in pronoms %}
+        {{ indice }} : {{ pronom }}<br>
+    {% endfor %}   
+    
+    {# équivalent de in_array() en PHP #}
+    {% if int in [1, 2, 3] %}
+        <p>int vaut 1, 2 ou 3</p>
+    {% endif %}
+    
+    {# deux synthaxe pour accéder à l'élément d'un tableau par sa clé #}
+    {{ dump(pronoms[0]) }}
+    {{ dump(pronoms.0) }}
+    
+{% endblock %}
