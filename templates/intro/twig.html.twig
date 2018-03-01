@@ -78,4 +78,72 @@
     {{ dump(pronoms[0]) }}
     {{ dump(pronoms.0) }}
     
+    {% for test in [] %}
+        {{ test }}
+    {% else %}
+        <p>Le tableau est vide</p>
+    {% endfor %}
+    
+    {% set users = ['Julien','Thomas','Laurence'] %}
+    
+    {% for user in users %}
+        {# sur quel tour de boucle on est, index 1 #}
+        {{ dump(loop.index) }}
+        
+        {# sur quel tour de boucle on est, index 0 #}
+        {{ dump(loop.index0) }}
+        
+        {% if loop.first %}
+            <p>1er tour de boucle</p>
+        {% endif %}
+        
+        {% if loop.last %}
+            <p>Dernier tour de boucle</p>
+        {% endif %}
+        
+        {# odd pour impair (even pour pair #}
+        {% if loop.index is odd %}
+            <p>Tour de boucle impair</p>
+        {% endif %}
+        
+        {{ user }}
+    {% endfor %}  
+    
+    {% set bouh = 'bouh' %}
+    
+    {# concaténation ~ #}
+    <p>{{ bouh ~ '!' }}</p>
+    
+    {# application du filtre upper (strtoupper() en PHP)  #}
+    <p>{{ bouh|upper }}</p>
+    
+    {# filtre par defaut appliqué si la valeur est vide #}
+    <p>{{ emptyVar|default('emptyVar est vide') }}</p>
+    
+    {% set html = '<p>Du Html</p>' %}
+    
+    {# affiche le contenu du set html #}
+    {# Par défaut le html est échappé #}
+    {{ html }}
+    
+    {# affiche le contenu du set html sans les balises #}
+    {# le filtre raw pour ne pas echapper le html #}
+    {{ html|raw }}
+    
+    {# filtre de formatage de date #}
+    <p>{{ now|date('d/m/Y') }}</p>
+    
+    {# inclusion de fichier #}
+    {#{% include 'intro/included.html.twig' %}#}
+    
+    {# only pour ne pas passer les variables au fichier inclus #}
+    {# {% include 'intro/included.html.twig' only %} #}
+    
+    {# with passe un tableau de variables en plus de celles de la page #}
+    {% include 'intro/included.html.twig' with {foo:'nouvelle variable'} %}
+    
+    {# with ... only ne passe qu'un tableau de variables #}
+    {% include 'intro/included.html.twig' with {bouh: bouh,foo:'nouvelle variable'} only %}
+    
+    
 {% endblock %}
