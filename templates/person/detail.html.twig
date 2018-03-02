@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <strong>Nom:</strong>{{ person.fullname}}<br>
+    <strong>Email:</strong>{{ person.email}}<br>
+    <strong>Date de naissance:</strong>{{ person.birthdate|date('d/m/Y')}}<br>
+    
+{% endblock %}

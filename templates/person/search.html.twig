@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form method="post">
+        <label>Email</label>
+        <input type="text" name="email">
+        <button type="submit">Rechercher</button>
+    </form>    
+    
+    {% if person is not null %}
+        <strong>Nom:</strong>{{ person.fullname}}<br>
+        <strong>Email:</strong>{{ person.email}}<br>
+        <strong>Date de naissance:</strong>{{ person.birthdate|date('d/m/Y')}}
+    {% endif %}
+{% endblock %}

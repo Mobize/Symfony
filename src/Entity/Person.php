@@ -83,6 +83,10 @@ class Person
         $this->birthdate = $birthdate;
         return $this;
     }
+    
+    public function getFullname(){
+        return $this->firstname.' '.$this->lastname;
+    }
 
     
 }
